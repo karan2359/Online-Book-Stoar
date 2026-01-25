@@ -93,7 +93,7 @@
         
         <?php if (!isLoggedIn()): ?>
             <div style="background:#fff3cd; padding:20px; border-radius:10px; margin-bottom:20px;">
-                <p>⚠️ Please <a href="#" onclick="showLogin()">login</a> to view your cart</p>
+                <p>⚠️ Please <a href="login.php" onclick="showLogin()">login</a> to view your cart</p>
             </div>
         <?php else: ?>
         

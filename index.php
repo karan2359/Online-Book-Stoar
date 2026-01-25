@@ -24,12 +24,23 @@
                 <div class="search-bar"><input class="searchbar" type="text" placeholder="Search Bar" name="searchbar">
                </div>
                <div class="center card">
-    <a href="get_cart.php">🛒 Cart <span class="cart-count">0</span></a>
+    <a href="cart.php">🛒 Cart <span class="cart-count">0</span></a>
 </div>
 
-                <!-- <div class="center card"><a href="#">🛒Cart</a></div> -->
 
-                <div class="center acc">
+                <!-- <div class="center card"><a href="#">🛒Cart</a></div> -->
+<div class="acc">
+    <span style="padding: 10px 20px; font-weight: bold; color: black; cursor: pointer; display: inline-block;">👤 Account</span>
+    <div class="acc-dropdown">
+        <a href="login.php">🔐 Login</a>
+        <a href="signin.php">📝 Sign Up</a>
+        <a href="orders.php">📦 Orders</a>
+        <span id="userWelcome" style="display:none; padding:10px 20px; color:#2ae84f;"></span>
+        <a href="#" onclick="logout()" id="logoutBtn" style="display:none;">🚪 Logout</a>
+    </div>
+</div>
+
+                <!-- <div class="center acc">
                     <a href="Acc.php">👤 Account</a>
                     <div class="acc-dropdown">
                         <a href="signin.php">Sign In</a>
@@ -37,7 +48,7 @@
                         <a href="orders.php">Orders</a>
 
                     </div>
-                </div>
+                </div> -->
             </div>
         </nav>
        <div class="container">
@@ -161,11 +172,11 @@
             updateCartCount();
         });
     </script>
-    <script src="script.js"></script>
     </main>
     <footer>
-       <p>&copy;Footer Page</p>
+        <p>&copy;Footer Page</p>
     </footer>
     
+    <script src="script.js"></script>
 </body>
 </html>

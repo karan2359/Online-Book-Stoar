@@ -154,3 +154,24 @@ function logout() {
     cart = [];
     updateCartCount();
 }
+
+
+// Check login status on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
+    const userName = localStorage.getItem('userName');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const userWelcome = document.getElementById('userWelcome');
+    
+    if (isLoggedIn && userName) {
+        if (userWelcome) userWelcome.textContent = `Welcome, ${userName}!`;
+        if (logoutBtn) logoutBtn.style.display = 'block';
+    }
+});
+
+function logout() {
+    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('isAdmin');
+    window.location.reload();
+}

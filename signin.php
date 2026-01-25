@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In Page</title>
     <link rel="stylesheet" href="signin.css">
-   
+
 </head>
 
 <body>
@@ -28,34 +28,108 @@
             </div>
         </nav>
     </header>
-    <form action="#">
+    <form method="POST" id="signupForm">
 
 
         <div class="container">
             <h2>SignIn Page</h2>
             <div class="data">
                 <label for="fname">Full Name </label>
-                <input type="text" name="fname" id="fname" placeholder="Enter Full Name" required>
+                <input id="signupName" type="text" name="fname" id="fname" placeholder="Enter Full Name" required>
 
-                <label for="Mobile">Mobile</label>
-                <input type="tel" name="Mobile" id="mobile" required pattern="[1-9]" size="10">
+                <label for="mobile">Mobile</label>
+                <input id="signupMobile" type="tel" name="mobile" id="mobile" required>
 
                 <label for="email">Email</label>
-                <Input type="email" name="email" id="email"></Input>
+                <input id="signupEmail" type="email" name="email" id="email">
 
                 <label for="Password">Password</label>
-                <Input type="password" Name="Password" id="password" required pattern="[A-Z,a-z,1-0,@,#,$,%]"></Input>
-
-                <label for="Conpass">Confirm Password</label>
-                <input type="password" Name="conpass" id="conform">
-
-
+                <input id="signupPassword" type="password" Name="password" id="password" required>
+                
+                <label for="City">City</label>
+                <input type="text" id="signupCity" placeholder="City" required>
+                
+                <label for="State">State</label>
+                <input type="text" id="signupState" placeholder="State" required>
 
             </div>
-            <button type="submit">Signin </button>
-            <p>If You Already Have a Account: <a href="login.php">LogIn</a></p>
+            <button type="submit">Create Account </button>
+            <div class="links">
+                Already have account? <a href="login.html">Login</a>
+            </div>
         </div>
     </form>
+    <?php
+include 'config.php';
+header('Content-Type: application/json');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $fullname = trim($_POST['fname']);
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+    $mobile = $_POST['mobile'];
+    $city = $_POST['city'];
+    $state = $_POST['state'];
+    
+    // Check if email exists
+    $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    
+    if ($stmt->rowCount() > 0) {
+        echo json_encode(['success' => false, 'message' => 'Email already exists!']);
+        exit;
+    }
+    
+    // Generate user ID
+    $stmt = $pdo->query("SELECT COALESCE(MAX(userid), 0) + 1 as newid FROM users");
+    $userid = $stmt->fetch()['newid'];
+    
+    // Hash password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    
+    // Insert user
+    $stmt = $pdo->prepare("INSERT INTO users (userid, fullname, email, password, mobile, city, state) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    
+    if ($stmt->execute([$userid, $fullname, $email, $hashed_password, $mobile, $city, $state])) {
+        echo json_encode(['success' => true, 'message' => 'Account created! Please login.']);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Registration failed!']);
+    }
+}
+?>
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const data = {
+                fullname: document.getElementById('signupName').value,
+                mobile: document.getElementById('signupMobile').value,
+                email: document.getElementById('signupEmail').value,
+                password: document.getElementById('signupPassword').value,
+                city: document.getElementById('signupCity').value,
+                state: document.getElementById('signupState').value
+            };
+
+            const errorMsg = document.getElementById('errorMsg');
+
+            fetch('signup.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(data)
+            })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.success) {
+                        alert(result.message);
+                        window.location.href = 'login.html';
+                    } else {
+                        errorMsg.textContent = result.message;
+                        errorMsg.style.display = 'block';
+                    }
+                });
+        });
+    </script>
+
     <footer>
         &copy;Copyright Part
     </footer>
