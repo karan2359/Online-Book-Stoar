@@ -30,68 +30,19 @@
 
                 <!-- <div class="center card"><a href="#">🛒Cart</a></div> -->
 <div class="acc">
-    <span style="padding: 10px 20px; font-weight: bold; color: black; cursor: pointer; display: inline-block;"><a href="acc.php">👤 Account</a></span>
+    <span ><a href="acc.php">👤 Account</a></span>
     <div class="acc-dropdown list">
         
-        <a href="login.php">🔐 Login</a>
-        <a href="signin.php">📝 Sign Up</a>
-        <a href="orders.php">📦 Orders</a>
+        <a href="login.php">Login</a>
+        <a href="signin.php">Sign Up</a>
+        <a href="orders.php">Orders</a>
         <span id="userWelcome" style="display:none; padding:10px 20px; color:#2ae84f;"></span>
         <a href="#" onclick="logout()" id="logoutBtn" style="display:none;">🚪 Logout</a>
     </div>
 </div>
-
-                <!-- <div class="center acc">
-                    <a href="Acc.php">👤 Account</a>
-                    <div class="acc-dropdown list">
-                        <a href="signin.php">Sign In</a>
-                        <a href="login.php">Login</a>
-                        <a href="orders.php">Orders</a>
-
-                    </div>
-                </div> -->
             </div>
         </nav>
-       <!-- <div class="category  ">
-        
-        <div class="category-filter dropdown list">
-            <button onclick="filterBooks('All', '')" class="active"> All Books</button>
-            
-            <div class="category-group dropdown list ">
-                <button onclick="filterBooks('Fiction', '')">📖 Fiction</button>
-                <ul>
-                    <li><button onclick="filterBooks('Fiction', 'Classics')">📚 Classics</button></li>
-                    <li><button onclick="filterBooks('Fiction', 'Mythological')">🏛️ Mythological</button></li> 
-                </ul>
-            </div>
-            
-            
-             <div class="category-group dropdown list">
-            <button onclick="filterBooks('Non-Fiction', '')">📘 Non-Fiction</button>
-            <ul>
-                <li><button onclick="filterBooks('Non-Fiction', 'Self Improvement')">💡 Self Improvement</button></li>
-                <li><button onclick="filterBooks('Non-Fiction', 'Biography')">👤 Biography</button></li>
-            </ul> 
-             </div>
 
-           
-             <div class="category-group dropdown list ">
-            <button onclick="filterBooks('Academics', '')">🎓 Academics</button>
-            <ul>
-                <li><button onclick="filterBooks('Academics', 'Competitive Exam')">📝 Competitive Exam</button></li>
-                <li><button onclick="filterBooks('Academics', 'School')">🏫 School</button></li>
-            </ul>           
-             </div>
-
-
-           
-             <div class="category-group dropdown list ">
-            <button onclick="filterBooks('Kids', '')">👶 Kids</button>
-            <ul>
-                <li> <button onclick="filterBooks('Kids', 'Activity')">🎮 Activity & Puzzles</button></li>
-            </ul>
-           
-             </div> -->
 <ul class="category">
     <li class="dropdown list" onclick="filterBooks('All', '')" class="active"> All Books</li>
             <li class="dropdown list" onclick="filterBooks('Fiction', '')">Fiction

@@ -50,58 +50,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&amp;display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - BookStore</title>
-    <style>
-        * { margin: 0; padding: 0; font-family: monospace; }
-        body { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh; display: flex; align-items: center; justify-content: center;
-        }
-        .signup-container {
-            background: rgba(255,255,255,0.95);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            width: 100%; max-width: 400px;
-            text-align: center;
-        }
-        .logo { font-size: 2.5rem; color: #2ae84f; margin-bottom: 20px; }
-        h2 { color: #333; margin-bottom: 20px; }
-        .message { 
-            padding: 12px; margin: 15px 0; border-radius: 10px; font-weight: bold;
-            display: <?php echo $success_msg || $error_msg ? 'block' : 'none'; ?>;
-        }
-        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-        input { 
-            width: 100%; padding: 15px; margin: 10px 0; border: 2px solid #ddd; 
-            border-radius: 10px; font-size: 16px; box-sizing: border-box;
-            transition: border-color 0.3s;
-        }
-        input:focus { outline: none; border-color: #2ae84f; }
-        button { 
-            width: 100%; padding: 15px; background: linear-gradient(45deg, #2ae84f, #1dd75f); 
-            color: white; border: none; border-radius: 10px; font-size: 18px; 
-            font-weight: bold; cursor: pointer; margin: 10px 0; transition: transform 0.2s;
-        }
-        button:hover { transform: translateY(-2px); }
-        .links { margin-top: 20px; }
-        .links a { color: #2ae84f; text-decoration: none; font-weight: bold; }
-        .links a:hover { text-decoration: underline; }
-        .test-data { 
-            margin-top: 20px; padding: 15px; background: #f8f9fa; 
-            border-radius: 10px; font-size: 14px; 
-        }
-    </style>
+    <title>Sign In Page</title>
+    <link rel="stylesheet" href="signin.css">
 </head>
 <body>
-    <div class="signup-container">
-        <div class="logo">📚 BookStore</div>
-        <h2>📝 Create Account</h2>
+     <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.php"> <img src="/assets/Logo/1766324583766.png" alt="logo" height="60px">
+                    <p class="title">Book Store</p>
+                </a></div>
+            <div class="menu">
+                <div><a href="index.php">🏚️Home</a></div>
+                <div class="center acc">
+                    <a href="login.php">👤 LogIn</a>                    
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <form method="POST">
+        <div class="container">
+        <h2>Create Account</h2>
         
         <?php if ($success_msg): ?>
             <div class="message success"><?php echo $success_msg; ?></div>
@@ -112,32 +87,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php endif; ?>
         
         <?php if (!$success_msg): ?>
-        <form method="POST">
+        <div class="data">
+            <label for="fname">Full Name </label>
             <input type="text" name="fullname" placeholder="Full Name *" 
                    value="<?php echo $_POST['fullname'] ?? ''; ?>" required>
+            <label for="Mobile">Mobile</label>
             <input type="tel" name="mobile" placeholder="Mobile Number (10 digits) *" 
                    value="<?php echo $_POST['mobile'] ?? ''; ?>" required>
-            <input type="email" name="email" placeholder="Email *" 
+            <label for="email">Email</label>
+                   <input type="email" name="email" placeholder="Email *" 
                    value="<?php echo $_POST['email'] ?? ''; ?>" required>
+            <label for="Password">Password</label>       
             <input type="password" name="password" placeholder="Password (6+ chars) *" required>
+            <label for="City">City</label>
             <input type="text" name="city" placeholder="City *" 
                    value="<?php echo $_POST['city'] ?? ''; ?>" required>
+            <label for="State">State</label>
             <input type="text" name="state" placeholder="State *" 
                    value="<?php echo $_POST['state'] ?? ''; ?>" required>
-            <button type="submit">🚀 Create Account</button>
-        </form>
-        
-        <div class="links">
-            Already have account? <a href="login.php">Login Here</a>
+                 </div>
+            <button type="submit">Create Account</button>
+            <p>Already have account? <a href="login.php">Login Here</a></p>
+            <?php endif; ?>
         </div>
-        
-        <div class="test-data">
-            <strong>💡 Test Data:</strong><br>
-            Email: test123@example.com<br>
-            Password: 123456<br>
-            Mobile: 9876543210
-        </div>
-        <?php endif; ?>
-    </div>
+    </form>
+
 </body>
 </html>

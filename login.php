@@ -21,16 +21,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html>
-<head><title>Login</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.php"> <img src="/assets/Logo/1766324583766.png" alt="logo" height="60px">
+                    <p class="title">Book Store</p></a>
+            </div>
+            <div class="menu">
+                <div><a href="index.php">🏚️Home</a></div>
+                <!-- <div class="center card"><a href="#">🛒Cart</a></div> -->
+                <div class="center acc"><a href="signin.php">👤 SignIn</a></div>
+            </div>
+        </nav>
+    </header>
+    <form method="POST">
+     <div class="container">
     <h2>Login</h2>
     <?php if(isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
-    <form method="POST">
-        <input type="email" name="email" placeholder="Email" required><br><br>
-        <input type="password" name="password" placeholder="Password" required><br><br>
-        <button type="submit">Login</button>
+        <div class="data">
+            <label for="email">Email</label>
+            <input type="email" name="email" placeholder="Email" required>
+            <label for="Password">Password</label>
+            <input type="password" name="password" placeholder="Password" required>
+        </div>
+            <button type="submit">Login</button>
+
+            <p>If You Not Have A Account: <a href="signin.php">Create Account</a></p>
+        </div>
     </form>
-    <p><a href="signin.php">Create Account</a></p>
 </body>
 </html>

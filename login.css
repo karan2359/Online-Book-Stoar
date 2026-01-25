@@ -96,6 +96,7 @@ label {
 input {
     padding: 9px;
     width: 250px;
+    /* outline: none; */
 }
 
 button {
