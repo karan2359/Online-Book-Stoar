@@ -32,6 +32,7 @@
 <div class="acc">
     <span style="padding: 10px 20px; font-weight: bold; color: black; cursor: pointer; display: inline-block;">👤 Account</span>
     <div class="acc-dropdown">
+        
         <a href="login.php">🔐 Login</a>
         <a href="signin.php">📝 Sign Up</a>
         <a href="orders.php">📦 Orders</a>
