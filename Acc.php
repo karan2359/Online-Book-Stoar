@@ -26,12 +26,12 @@
             <nav class="navbar">
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="#">Orders</a></li>
-                    <li><a href="#">Carts</a></li>
+                    <li><a href="orders.php">Orders</a></li>
+                    <li><a href="cart.php">Cart</a></li>
                     <li><a href="#">Setting</a></li>
                     <li><a href="#">Feedback</a></li>
                     <li><a href="#">About US</a></li>
-                    <li><a href="#">Log out</a></li>
+                    <li><a href="logout.php">Log out</a></li>
                 </ul>
             </nav>
         </aside>

@@ -154,14 +154,14 @@
             padding: 10px 0;
         }
 
-        .dropdown ul li a {
+        .a {
             display: block;
             font-size: 14px;
             padding: 10px;
             border-bottom: 1px dotted white;
         }
 
-        .dropdown ul li a:hover {
+        .a:hover {
             background-color: rgba(42, 238, 81, 0.3);
             padding-left: 10px;
             transition: 10px;

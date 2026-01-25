@@ -30,8 +30,8 @@
 
                 <!-- <div class="center card"><a href="#">🛒Cart</a></div> -->
 <div class="acc">
-    <span style="padding: 10px 20px; font-weight: bold; color: black; cursor: pointer; display: inline-block;">👤 Account</span>
-    <div class="acc-dropdown">
+    <span style="padding: 10px 20px; font-weight: bold; color: black; cursor: pointer; display: inline-block;"><a href="acc.php">👤 Account</a></span>
+    <div class="acc-dropdown list">
         
         <a href="login.php">🔐 Login</a>
         <a href="signin.php">📝 Sign Up</a>
@@ -43,7 +43,7 @@
 
                 <!-- <div class="center acc">
                     <a href="Acc.php">👤 Account</a>
-                    <div class="acc-dropdown">
+                    <div class="acc-dropdown list">
                         <a href="signin.php">Sign In</a>
                         <a href="login.php">Login</a>
                         <a href="orders.php">Orders</a>
@@ -52,39 +52,126 @@
                 </div> -->
             </div>
         </nav>
-       <div class="container">
-        <!-- MAIN CATEGORY FILTER BUTTONS -->
-        <div class="category-filter">
-            <button onclick="filterBooks('All', '')" class="active">📚 All Books</button>
+       <!-- <div class="category  ">
+        
+        <div class="category-filter dropdown list">
+            <button onclick="filterBooks('All', '')" class="active"> All Books</button>
             
-            <!-- Fiction with Subcategories -->
-            <div class="category-group">
+            <div class="category-group dropdown list ">
                 <button onclick="filterBooks('Fiction', '')">📖 Fiction</button>
-                <button onclick="filterBooks('Fiction', 'Classics')">📚 Classics</button>
-                <button onclick="filterBooks('Fiction', 'Romance')">💕 Romance</button>
-                <button onclick="filterBooks('Fiction', 'Mythological')">🏛️ Mythological</button>
+                <ul>
+                    <li><button onclick="filterBooks('Fiction', 'Classics')">📚 Classics</button></li>
+                    <li><button onclick="filterBooks('Fiction', 'Mythological')">🏛️ Mythological</button></li> 
+                </ul>
             </div>
             
-            <!-- Non-Fiction -->
+            
+             <div class="category-group dropdown list">
             <button onclick="filterBooks('Non-Fiction', '')">📘 Non-Fiction</button>
-            <button onclick="filterBooks('Non-Fiction', 'Self Improvement')">💡 Self Improvement</button>
-            <button onclick="filterBooks('Non-Fiction', 'Biography')">👤 Biography</button>
-            
-            <!-- Academics -->
+            <ul>
+                <li><button onclick="filterBooks('Non-Fiction', 'Self Improvement')">💡 Self Improvement</button></li>
+                <li><button onclick="filterBooks('Non-Fiction', 'Biography')">👤 Biography</button></li>
+            </ul> 
+             </div>
+
+           
+             <div class="category-group dropdown list ">
             <button onclick="filterBooks('Academics', '')">🎓 Academics</button>
-            <button onclick="filterBooks('Academics', 'Competitive Exam')">📝 Competitive Exam</button>
-            <button onclick="filterBooks('Academics', 'School')">🏫 School</button>
-            
-            <!-- Kids -->
+            <ul>
+                <li><button onclick="filterBooks('Academics', 'Competitive Exam')">📝 Competitive Exam</button></li>
+                <li><button onclick="filterBooks('Academics', 'School')">🏫 School</button></li>
+            </ul>           
+             </div>
+
+
+           
+             <div class="category-group dropdown list ">
             <button onclick="filterBooks('Kids', '')">👶 Kids</button>
-            <button onclick="filterBooks('Kids', 'Activity')">🎮 Activity & Puzzles</button>
+            <ul>
+                <li> <button onclick="filterBooks('Kids', 'Activity')">🎮 Activity & Puzzles</button></li>
+            </ul>
+           
+             </div> -->
+<ul class="category">
+    <li class="dropdown list" onclick="filterBooks('All', '')" class="active"> All Books</li>
+            <li class="dropdown list" onclick="filterBooks('Fiction', '')">Fiction
+                <ul>
+                    <li class="a "  onclick="filterBooks('Fiction', 'Classics')">Classics</li>                  
+                    <li  class="a " onclick="filterBooks('Fiction', 'Mythological')">Mythological</li>
+                </ul>
+            </li>
+            <li  class="dropdown list" onclick="filterBooks('Non-Fiction', '')">Non-Fiction
+                <ul>
+                    <li class="a "  onclick="filterBooks('Non-Fiction', 'Self Improvement')">Self Improvement</li>
+                    <li class="a "  onclick="filterBooks('Non-Fiction', 'Biography')">Biography</li>
+                    <!-- <li><a href="#"></a></li> class="a " 
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li> -->
+                </ul>
+            </li>
+            <li class="dropdown list" onclick="filterBooks('Academics', '')">Academics
+                <ul>
+                  
+                
+                    <li  class="a " onclick="filterBooks('Academics', 'Competitive Exam')">Competitive Exam</li>
+                    <li class="a "  onclick="filterBooks('Academics', 'Entrance exam')">Entrance exam</li>
+                    <li class="a "  onclick="filterBooks('Academics', 'School')"> School</li>
+                    <li class="a "  onclick="filterBooks('Academics', 'General Knowledge')"> General Knowledge</li>
+                    <!-- <li><a href="#"></a></li> -->
+                </ul>
+            </li>
             
-            <!-- Others -->
+            <li class="dropdown list" onclick="filterBooks('Kids', '')">Kids
+            <ul>
+                <li  class="a"  onclick="filterBooks('Kids', 'Activity &amp; Puzzles','Activity','Puzzles')"> Activity &amp; Puzzles</li>
+                <!-- <li><a href="#">Activity &amp; Puzzles</a></li> -->
+                <li  class="a"  onclick="filterBooks('Kids', 'Colouring &amp; Art book ','Colouring','Art book')"> Colouring &amp; Art book </li>
+                <li  class="a"  onclick="filterBooks('Kids', 'Essay &amp; Letter ','Essay','Letter')"> Essay &amp; Letter </li>
+                <li  class="a"  onclick="filterBooks('Kids', 'Work Book')">Work Book</li>
+                <li   class="a"  onclick="filterBooks('Kids', 'General Knowledge')">General Knowledge</li>                    
+                </ul>
+            </li>
+            <li class="dropdown list" onclick="filterBooks('Adults', '')">Adults
+                <ul>
+                    <li  class="a"  onclick="filterBooks('Adults', 'Crime')">Crime</li>
+                    <li  class="a"  onclick="filterBooks('Adults', 'Mystery Thriller')">Mystery Thriller</li>
+                    <lI  class="a"  onclick="filterBooks('Adults', 'Gen Fiction')">Gen Fiction</li>                    
+                    <li  class="a"  onclick="filterBooks('Adults', 'Fantasy Science Fiction')">Fantasy Science Fiction</li>                   
+                    <li  class="a"  onclick="filterBooks('Adults', 'Horror')">Horror</li>
+                </ul>
+            </li>
+
+                <li class="dropdown list" onclick="filterBooks('Comics', '')">Comics
+                <ul>
+                    <li class="a"  onclick="filterBooks('Comics', 'Superhero Comics')">Superhero Comics</li>
+                    <li  class="a" onclick="filterBooks('Comics', 'Manga Comics')">Manga Comics</li>
+                    <li class="a"  onclick="filterBooks('Comics', 'Horror Comics')">Horror Comics</li>
+                    <!-- <li><a href="#"></a></li>
+                        <li><a href="#"></a></li> -->
+                </ul>
+            </li>
+            <li class="dropdown list" onclick="filterBooks('Regional Books', '')">Regional Books
+                <ul>
+                    <li  class="a" onclick="filterBooks('Regional Books', 'Marathi')">Marathi</li>
+                    <li  class="a" onclick="filterBooks('Regional Books', 'Hindi')">Hindi</li>
+                    <li  class="a" onclick="filterBooks('Regional Books', 'Gujarati')">Gujarati</li>
+                    <!-- <li><a href="#"></a></li>
+                        <li><a href="#"></a></li> -->
+                </ul>
+            </li>
+
+        </ul>
+           
+             <!-- <div class="category-group dropdown list ">
             <button onclick="filterBooks('Adults', '')">👨 Adults</button>
+             </div>
+            <div class="category-group dropdown list ">
             <button onclick="filterBooks('Comics', '')">🦸 Comics</button>
+             </div>
+            <div class="category-group dropdown list ">
             <button onclick="filterBooks('Regional', '')">🌍 Regional</button>
+             </div> -->
         </div>
-        <hr>
     </header>
     <main>
         <div class="books-grid" id="booksContainer">
