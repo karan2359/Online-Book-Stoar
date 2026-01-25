@@ -1,0 +1,207 @@
+<?php include 'config.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - BookStore</title>
+    <style>
+        .orders-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        .order-card {
+            background: white;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid #4facfe;
+        }
+        
+        .order-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .order-details {
+            padding: 25px;
+        }
+        
+        .order-items {
+            margin: 20px 0;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .item-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .item-info img {
+            width: 60px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .status-badge {
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-confirmed { background: #d1ecf1; color: #0c5460; }
+        .status-delivered { background: #d4edda; color: #155724; }
+        .status-cancelled { background: #f8d7da; color: #721c24; }
+        
+        .no-orders {
+            text-align: center;
+            padding: 80px 20px;
+            color: #666;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+        
+        .btn-primary { background: #4facfe; color: white; }
+        .btn-success { background: #51cf66; color: white; }
+    </style>
+</head>
+<body>
+    <!-- YOUR NAVBAR WITH ORDERS LINK -->
+    
+    <div class="orders-container">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <h1>📦 My Orders</h1>
+            <a href="index.php" class="btn btn-primary">← Continue Shopping</a>
+        </div>
+        
+        <?php if (!isLoggedIn()): ?>
+            <div style="background:#fff3cd; padding:30px; border-radius:15px; text-align:center;">
+                <h3>🔐 Please login to view your orders</h3>
+                <p><a href="#" onclick="showLogin()" style="color:#4facfe;">Click here to <a href="login.php">login</a></a></p>
+            </div>
+        <?php else: ?>
+        
+        <?php
+        $user_id = $_SESSION['user_id'];
+        
+        // Fetch user's orders
+        $stmt = $pdo->prepare("
+            SELECT o.*, COUNT(oi.id) as item_count 
+            FROM orders o 
+            LEFT JOIN order_items oi ON o.id = oi.order_id 
+            WHERE o.user_id = ? 
+            GROUP BY o.id 
+            ORDER BY o.order_date DESC
+        ");
+        $stmt->execute([$user_id]);
+        $orders = $stmt->fetchAll();
+        
+        if (empty($orders)): ?>
+            <div class="no-orders">
+                <h2>📭 No orders yet</h2>
+                <p>Your order history will appear here once you place an order.</p>
+                <a href="index.php" class="btn btn-primary" style="padding:15px 30px; font-size:18px;">Start Shopping</a>
+            </div>
+        <?php else: ?>
+        
+        <?php foreach ($orders as $order): ?>
+        <div class="order-card">
+            <div class="order-header">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong>Order #<?= str_pad($order['id'], 6, '0', STR_PAD_LEFT) ?></strong>
+                        <span style="margin-left:20px; font-size:14px; opacity:0.9;">
+                            Placed on <?= date('M d, Y \a\t g:i A', strtotime($order['order_date'])) ?>
+                        </span>
+                    </div>
+                    <div class="status-badge status-<?= $order['status'] ?>">
+                        <?= ucfirst($order['status']) ?>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="order-details">
+                <div class="order-items">
+                    <?php
+                    // Fetch order items
+                    $stmt = $pdo->prepare("
+                        SELECT oi.*, b.title, b.image, b.author 
+                        FROM order_items oi 
+                        JOIN books b ON oi.book_id = b.id 
+                        WHERE oi.order_id = ? 
+                        ORDER BY oi.id
+                    ");
+                    $stmt->execute([$order['id']]);
+                    $items = $stmt->fetchAll();
+                    
+                    foreach ($items as $item): 
+                        $item_total = $item['price'] * $item['quantity'];
+                    ?>
+                    <div class="order-item">
+                        <div class="item-info">
+                            <img src="<?= $item['image'] ?>" alt="<?= $item['title'] ?>">
+                            <div>
+                                <strong><?= $item['title'] ?></strong><br>
+                                <small>by <?= $item['author'] ?></small>
+                            </div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size:18px; font-weight:bold;">Qty: <?= $item['quantity'] ?></div>
+                            <div>₹<?= number_format($item_total, 2) ?></div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+                
+                <div style="border-top: 2px solid #eee; padding-top:20px;">
+                    <div style="display: flex; justify-content: space-between; font-size:18px; font-weight:bold;">
+                        <span>Total Amount:</span>
+                        <span>₹<?= number_format($order['total_amount'], 2) ?></span>
+                    </div>
+                    
+                    <?php if ($order['status'] === 'pending'): ?>
+                    <div style="margin-top:15px;">
+                        <a href="cancel_order.php?id=<?= $order['id'] ?>" 
+                           class="btn" style="background:#ff6b6b; color:white;"
+                           onclick="return confirm('Cancel this order?')">❌ Cancel Order</a>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+        
+        <?php endif; ?>
+        <?php endif; ?>
+    </div>
+
+    <!-- Link script.js for cart count -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -67,5 +67,7 @@ if (!isAdmin()) { header('Location: index.php'); exit; } ?>
         }
         ?>
     </div>
+    <script src="script.js"></script>
+</body>
 </body>
 </html>
