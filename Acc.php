@@ -15,7 +15,7 @@
     <div class="container">
         <aside class="sidebar">
             <div class="dash">
-                <div class="logo"><a href="/index.php"> <img src="/assets/Logo/1766324583766.png" alt="logo"
+                <div class="logo"><a href="index.php"> <img src="/assets/Logo/1766324583766.png" alt="logo"
                             height="60px">
                         <p class="title">Book Store</p>
                     </a></div>
@@ -25,7 +25,7 @@
             <hr>
             <nav class="navbar">
                 <ul>
-                    <li><a href="/index.php">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="#">Orders</a></li>
                     <li><a href="#">Carts</a></li>
                     <li><a href="#">Setting</a></li>

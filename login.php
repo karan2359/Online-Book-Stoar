@@ -44,7 +44,28 @@
             <button type="submit">LogIn</button>
             <p>If You Not Have A Account Then <a href="signin.php">Signin</a></p>
         </div>
-        
+        <?php
+include 'config.php';
+header('Content-Type: application/json');
+
+if ($_POST) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    $user = $stmt->fetch();
+    
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['is_admin'] = $user['is_admin'];
+        echo json_encode(['success' => true]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Invalid credentials']);
+    }
+}
+?>
+
     </form>
     <footer>
         &copy;Footer Page
