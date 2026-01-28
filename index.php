@@ -18,28 +18,27 @@
 
         <nav class="navbar">
             <div class="logo"><a href="index.php"> <img src="/assets/Logo/1766324583766.png" alt="logo" height="60px">
-                    <p class="title">Book Store</p>
-                </a></div>
+                    <p class="title">Book Store</p></a>
+            </div>
             <div class="menu">
                 <div class="search-bar"><input class="searchbar" type="text" placeholder="Search Bar" name="searchbar">
-               </div>
-               <div class="center card">
-    <a href="cart.php">🛒 Cart <span class="cart-count">0</span></a>
-</div>
+                </div>
+                <div class="center card">
+                    <a href="cart.php">🛒 Cart <span class="cart-count">0</span></a>
+                </div>
 
 
                 <!-- <div class="center card"><a href="#">🛒Cart</a></div> -->
-<div class="acc">
-    <span ><a href="acc.php">👤 Account</a></span>
-    <div class="acc-dropdown list">
-        
-        <a href="login.php">Login</a>
-        <a href="signin.php">Sign Up</a>
-        <a href="orders.php">Orders</a>
-        <span id="userWelcome" style="display:none; padding:10px 20px; color:#2ae84f;"></span>
-        <a href="#" onclick="logout()" id="logoutBtn" style="display:none;">🚪 Logout</a>
-    </div>
-</div>
+                <div class="acc">
+                     <span ><a href="acc.php">👤 Account</a></span>
+                     <div class="acc-dropdown list">        
+                        <a href="login.php">Login</a>
+                        <a href="signin.php">Sign Up</a>
+                        <a href="orders.php">Orders</a>
+                        <span id="userWelcome" style="display:none; padding:10px 20px; color:#2ae84f;"></span>
+                        <a href="#" onclick="logout()" id="logoutBtn" style="display:none;">Logout</a>
+                     </div>
+                </div>
             </div>
         </nav>
 
@@ -112,16 +111,6 @@
             </li>
 
         </ul>
-           
-             <!-- <div class="category-group dropdown list ">
-            <button onclick="filterBooks('Adults', '')">👨 Adults</button>
-             </div>
-            <div class="category-group dropdown list ">
-            <button onclick="filterBooks('Comics', '')">🦸 Comics</button>
-             </div>
-            <div class="category-group dropdown list ">
-            <button onclick="filterBooks('Regional', '')">🌍 Regional</button>
-             </div> -->
         </div>
     </header>
     <main>
