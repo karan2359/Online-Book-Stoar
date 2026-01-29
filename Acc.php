@@ -15,7 +15,7 @@
     <div class="container">
         <aside class="sidebar">
             <div class="dash">
-                <div class="logo"><a href="index.php"> <img src="/asset/logo cut.png" alt="logo"
+                <div class="logo"><a href="index.php"> <img src="asset/logo cut.png" alt="logo"
                             height="60px">
                         <p class="title">Book Store</p>
                     </a></div>

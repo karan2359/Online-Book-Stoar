@@ -17,7 +17,7 @@
     <header>
 
         <nav class="navbar">
-            <div class="logo"><a href="index.php"> <img src="/asset/logo cut.png" alt="logo" height="60px">
+            <div class="logo"><a href="index.php"> <img src="asset/logo cut.png" alt="logo" height="60px">
                     <p class="title">Book Store</p></a>
             </div>
             <div class="menu">
@@ -29,7 +29,7 @@
 
 
                 <!-- <div class="center card"><a href="#">🛒Cart</a></div> -->
-                <div class="acc">
+                <!-- <div class="acc">
                      <span ><a href="acc.php">👤 Account</a></span>
                      <div class="acc-dropdown list">        
                         <a href="login.php">Login</a>
@@ -38,7 +38,21 @@
                         <span id="userWelcome" style="display:none; padding:10px 20px; color:#2ae84f;"></span>
                         <a href="#" onclick="logout()" id="logoutBtn" style="display:none;">Logout</a>
                      </div>
-                </div>
+                </div> -->
+                <div class="acc">
+<?php 
+include 'config.php';
+if (isLoggedIn()) {
+    if (isAdmin()) {
+        echo "<a href='admin/add_book.php'>➕ Add Book</a> | ";
+    }
+    echo "Hi, {$_SESSION['fullname']} | <a href='logout.php'>Logout</a>";
+} else {
+    echo "<a href='login.php'>Login</a> | <a href='signin.php'>Sign Up</a>";
+}
+?>
+</div>
+
             </div>
         </nav>
 
