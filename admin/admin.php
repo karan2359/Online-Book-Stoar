@@ -7,9 +7,18 @@ if (!isAdmin()) { header('Location: index.php'); exit; } ?>
 <html>
 <head>
     <title>Admin Panel</title>
-    <style> /* Your admin CSS */ </style>
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="../index.php"> <img src="../asset/logo cut.png" alt="logo" height="60px">
+                    <p class="title">Book Store</p></a>
+            </div>
+            <div class="menu">
+                <div><a href="../index.php">🏚️Home</a></div>
+            </div>
+        </nav>
+    </header>
     <h1>Admin Control Panel</h1>
     
     <!-- Add New Book Form -->
