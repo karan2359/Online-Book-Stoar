@@ -17,7 +17,7 @@
     <header>
 
         <nav class="navbar">
-            <div class="logo"><a href="index.php"> <img src="/assets/Logo/1766324583766.png" alt="logo" height="60px">
+            <div class="logo"><a href="index.php"> <img src="/asset/logo cut.png" alt="logo" height="60px">
                     <p class="title">Book Store</p></a>
             </div>
             <div class="menu">
@@ -60,9 +60,7 @@
                 </ul>
             </li>
             <li class="dropdown list" onclick="filterBooks('Academics', '')">Academics
-                <ul>
-                  
-                
+                <ul>              
                     <li  class="a " onclick="filterBooks('Academics', 'Competitive Exam')">Competitive Exam</li>
                     <li class="a "  onclick="filterBooks('Academics', 'Entrance exam')">Entrance exam</li>
                     <li class="a "  onclick="filterBooks('Academics', 'School')"> School</li>

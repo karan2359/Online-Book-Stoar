@@ -15,7 +15,7 @@
     <div class="container">
         <aside class="sidebar">
             <div class="dash">
-                <div class="logo"><a href="index.php"> <img src="/assets/Logo/1766324583766.png" alt="logo"
+                <div class="logo"><a href="index.php"> <img src="/asset/logo cut.png" alt="logo"
                             height="60px">
                         <p class="title">Book Store</p>
                     </a></div>
@@ -39,8 +39,6 @@
             <div class="acc-info">
                <p> Name: username</p>
                 <p>Mobile: 1234567890</p>
-
-
             </div>
             <div class="count">
                 <div class="ototal total">
