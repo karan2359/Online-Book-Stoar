@@ -1,5 +1,6 @@
 <?php
-include 'config.php';
+include_once 'config.php';
+
 
 $success_msg = '';
 $error_msg = '';

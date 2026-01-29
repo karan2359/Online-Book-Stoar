@@ -1,5 +1,6 @@
 <?php
-include 'config.php';
+include_once 'config.php';
+
 header('Content-Type: application/json');
 
 if (!isLoggedIn()) {

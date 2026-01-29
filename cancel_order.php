@@ -1,5 +1,6 @@
 <?php
-include 'config.php';
+include_once 'config.php';
+
 if (!isLoggedIn()) {
     header('Location: index.php');
     exit;

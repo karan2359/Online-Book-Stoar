@@ -1,4 +1,5 @@
-<?php include 'config.php'; ?>
+<?php include_once 'config.php';
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,9 +45,9 @@
 include 'config.php';
 if (isLoggedIn()) {
     if (isAdmin()) {
-        echo "<a href='admin/add_book.php'>➕ Add Book</a> | ";
+        echo "<a href='admin/admin.php'>➕ Add Book</a> | ";
     }
-    echo "Hi, {$_SESSION['fullname']} | <a href='logout.php'>Logout</a>";
+    echo "Hi, {$_SESSION['fullname']}  | <a href='logout.php'>Logout</a>";
 } else {
     echo "<a href='login.php'>Login</a> | <a href='signin.php'>Sign Up</a>";
 }
