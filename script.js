@@ -175,3 +175,70 @@ function logout() {
     localStorage.removeItem('isAdmin');
     window.location.reload();
 }
+function addToCart(bookId) {
+    // Show loading
+    const btn = event.target;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '⏳ Adding...';
+    btn.disabled = true;
+    
+    fetch('add_to_cart.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `book_id=${bookId}&quantity=1`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Update cart count in navbar
+            updateCartCount(data.cart_count || 0);
+            
+            // Success message
+            showNotification(data.message, 'success');
+            
+            if (data.guest_cart) {
+                showNotification('Login to save your cart permanently!', 'info');
+            }
+        } else {
+            if (data.message.includes('login')) {
+                window.location.href = 'login.php';
+            } else {
+                showNotification(data.message, 'error');
+            }
+        }
+    })
+    .catch(error => {
+        showNotification('Network error!', 'error');
+    })
+    .finally(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    });
+}
+
+// Helper functions
+function updateCartCount(count) {
+    const cartBadge = document.querySelector('.cart-count');
+    if (cartBadge) {
+        cartBadge.textContent = count;
+        cartBadge.style.display = count > 0 ? 'inline' : 'none';
+    }
+}
+
+function showNotification(message, type) {
+    // Simple toast notification
+    const toast = document.createElement('div');
+    toast.style.cssText = `
+        position:fixed; top:20px; right:20px; padding:15px 20px; 
+        background:${type==='success'?'#4facfe':type==='error'?'#e74c3c':'#f39c12'};
+        color:white; border-radius:5px; z-index:9999; font-weight:bold;
+    `;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}

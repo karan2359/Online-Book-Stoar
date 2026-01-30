@@ -109,8 +109,7 @@
                         <li><a href="#"></a></li> -->
                 </ul>
             </li>
-
-        </ul>
+</ul>
     </header>
     <main>
         <div class="books-grid" id="booksContainer">
@@ -131,10 +130,10 @@
                         <p><strong>✍️ {$book['author']}</strong></p>
                         <p>🏢 {$book['publisher']}</p>
                         <p class='price' style='font-size:large; font-weight:bold;'>₹{$book['price']}</p>
-                        <p class='desc'> ".substr($book['description'], 0, 80)."...</p>
-                        <button style='padding:5px; margin:70px' onclick='addToCart({$book['id']}, \"{$book['title']}\", {$book['price']}, \"{$book['category']}\")'>
-                            🛒 Add to Cart
-                        </button>
+                        <p class='desc'> '.substr($book['description'], 0, 80).'...</p>
+                        <button class='add-cart-btn' onclick='addToCart(<?php echo $book['id'];?>)'>
+    🛒 Add to Cart
+</button>
                     </div>
                 </div>
                 </div>";
