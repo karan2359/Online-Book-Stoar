@@ -25,34 +25,21 @@
                 <div class="search-bar"><input class="searchbar" type="text" placeholder="Search Bar" name="searchbar">
                 </div>
                 <div class="center card">
-                    <a href="cart.php">🛒 Cart <span class="cart-count">0</span></a>
+                    <a href="cart.php">🛒 Cart</a>
+                    <a href="orders.php">Orders</a>
                 </div>
-
-
-                <!-- <div class="center card"><a href="#">🛒Cart</a></div> -->
-                <!-- <div class="acc">
-                     <span ><a href="acc.php">👤 Account</a></span>
-                     <div class="acc-dropdown list">        
-                        <a href="login.php">Login</a>
-                        <a href="signin.php">Sign Up</a>
-                        <a href="orders.php">Orders</a>
-                        <span id="userWelcome" style="display:none; padding:10px 20px; color:#2ae84f;"></span>
-                        <a href="#" onclick="logout()" id="logoutBtn" style="display:none;">Logout</a>
-                     </div>
-                </div> -->
-                <div class="acc">
-<?php 
-include 'config.php';
-if (isLoggedIn()) {
-    if (isAdmin()) {
-        echo "<a href='admin/admin.php'>➕ Add Book</a> | ";
-    }
-    echo "Hi, {$_SESSION['fullname']}  | <a href='logout.php'>Logout</a>";
-} else {
-    echo "<a href='login.php'>Login</a> | <a href='signin.php'>Sign Up</a>";
-}
-?>
-</div>
+                <div class="acc card">
+                    <?php 
+                    include 'config.php';
+                    if (isLoggedIn()) {
+                        if (isAdmin()) {
+                            echo "<a href='admin/admin.php'>➕ Add Book</a> | ";
+                        }
+                        echo " <div style='color:white;'>Hi, {$_SESSION['fullname']}  | <a href='logout.php'>Logout</a>";
+                    } else {
+                        echo "<a href='login.php'>Login</a> | <a href='signin.php'>Sign Up</a>";
+                    }?>
+               </div>
 
             </div>
         </nav>
@@ -91,7 +78,7 @@ if (isLoggedIn()) {
                 <li  class="a"  onclick="filterBooks('Kids', 'Colouring &amp; Art book ','Colouring','Art book')"> Colouring &amp; Art book </li>
                 <li  class="a"  onclick="filterBooks('Kids', 'Essay &amp; Letter ','Essay','Letter')"> Essay &amp; Letter </li>
                 <li  class="a"  onclick="filterBooks('Kids', 'Work Book')">Work Book</li>
-                <li   class="a"  onclick="filterBooks('Kids', 'General Knowledge')">General Knowledge</li>                    
+                <!-- <li   class="a"  onclick="filterBooks('Kids', 'General Knowledge')">General Knowledge</li>                     -->
                 </ul>
             </li>
             <li class="dropdown list" onclick="filterBooks('Adults', '')">Adults
@@ -124,7 +111,6 @@ if (isLoggedIn()) {
             </li>
 
         </ul>
-        </div>
     </header>
     <main>
         <div class="books-grid" id="booksContainer">
@@ -133,23 +119,24 @@ if (isLoggedIn()) {
             $stmt = $pdo->query("SELECT * FROM books ORDER BY created_at DESC");
             while ($book = $stmt->fetch()) {
                 $subcategory = explode(',', $book['subcategory'] ?? $book['category'])[0];
-                echo "
-                <div class='book-card' 
+                echo "<div class='books-gridd'>
+                <div class='book-card' style='border:2px solid black; background-color:white; width:250px; height:400px;'
                      data-category='{$book['category']}' 
                      data-subcategory='{$subcategory}'
                      data-id='{$book['id']}'>
-                    <img src='{$book['image']}' alt='{$book['title']}'>
+                    <img src='{$book['image']}' alt='{$book['title']}' style='border:1px solid black ; height:50px;'>
                     <div class='book-info'>
                         <div class='subcategory-tag'>{$book['category']} / {$subcategory}</div>
                         <h3>{$book['title']}</h3>
                         <p><strong>✍️ {$book['author']}</strong></p>
                         <p>🏢 {$book['publisher']}</p>
-                        <p class='price'>₹{$book['price']}</p>
-                        <p class='desc'>".substr($book['description'], 0, 80)."...</p>
-                        <button onclick='addToCart({$book['id']}, \"{$book['title']}\", {$book['price']}, \"{$book['category']}\")'>
+                        <p class='price' style='font-size:large; font-weight:bold;'>₹{$book['price']}</p>
+                        <p class='desc'> ".substr($book['description'], 0, 80)."...</p>
+                        <button style='padding:5px; margin:70px' onclick='addToCart({$book['id']}, \"{$book['title']}\", {$book['price']}, \"{$book['category']}\")'>
                             🛒 Add to Cart
                         </button>
                     </div>
+                </div>
                 </div>";
             }
             ?>
@@ -181,11 +168,11 @@ if (isLoggedIn()) {
             });
             
             // Update active button
-            document.querySelectorAll('.category-filter button').forEach(btn => {
+ /*           document.querySelectorAll('.category-filter button').forEach(btn => {
                 btn.classList.remove('active');
             });
             event.target.classList.add('active');
-            
+   */         
             // Show result count
             document.getElementById('resultCount').textContent = 
                 visibleCount + ' books found';

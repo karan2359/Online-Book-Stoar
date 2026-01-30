@@ -7,6 +7,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Orders - BookStore</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            /* font-family: monospace;
+            font-size: large; */
+
+            font-family: "Roboto Slab", serif;
+        }
+
+        body {
+            background-color: #393E46;
+            color:white;
+
+        }
+/* Navigation Bar */
+        .navbar {
+            display: flex;
+            /* background-color: rgba(42, 238, 81, 0.659); */
+            background-color: #222831;
+            justify-content: space-between;
+            padding: 20px;
+            /* font-size:large; */
+            font-weight: bold;
+        
+
+        }
+
+        .navlist {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+
+        }
+
+        .logo {
+            margin-left: 10px;
+        }
+        .title {
+            display: inline-block;
+            font-size: 35px;
+            position: absolute;
+            margin: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+
+        }
+
+        ul {
+            list-style: none;
+        }
+        .acc{
+            display: flex;
+            gap:20px;
+            margin:20px;
+            font-size:larger;
+        }
+
+        .books-grid {
+
+            padding: 20px;
+            display: flex; 
+            justify-content:space-evenly;
+            gap: 45px;
+            background-color: #948979;
+        }
+        .navbar {
+            display: flex;
+            /* background-color: rgba(42, 238, 81, 0.659); */
+            background-color: #222831;
+            justify-content: space-between;
+            padding: 20px;
+            /* font-size:large; */
+            font-weight: bold;
+        
+
+        }
+
+        .navlist {
+            /* position: sticky; */
+            display: flex;
+            gap: 30px;
+            list-style: none;
+
+        }
+
+        .logo {
+            margin-left: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            padding:1px;
+        }
+
+        ul {
+            list-style: none;
+        }
+/* Body */
         .orders-container {
             max-width: 1200px;
             margin: 50px auto;
@@ -74,7 +177,8 @@
         .no-orders {
             text-align: center;
             padding: 80px 20px;
-            color: #666;
+            /* color: #666; */
+            color: #fff;
         }
         
         .btn {
@@ -93,6 +197,29 @@
     </style>
 </head>
 <body>
+     <nav class="navbar">
+            <div class="logo"><a href="index.php"> <img src="asset/logo cut.png" alt="logo" height="60px">
+                    <p class="title">Book Store</p></a>
+            </div>
+                <div class="menu">
+                    </div>
+                    
+                    <div class="acc">
+                    <a href="index.php">🏚️Home</a>
+                    <?php 
+                    include 'config.php';
+                    if (isLoggedIn()) {
+                        // if (isAdmin()) {
+                        //     echo "<a href='admin/admin.php'>➕ Add Book</a> | ";
+                        // }
+                        echo " <div style='color:white;'>Hi, {$_SESSION['fullname']}  | <a href='logout.php'>Logout</a>";
+                    } else {
+                        echo "<a href='login.php'>Login</a> | <a href='signin.php'>Sign Up</a>";
+                    }?>
+               </div>
+
+            </div>
+        </nav>
     <!-- YOUR NAVBAR WITH ORDERS LINK -->
     
     <div class="orders-container">
@@ -102,9 +229,9 @@
         </div>
         
         <?php if (!isLoggedIn()): ?>
-            <div style="background:#fff3cd; padding:30px; border-radius:15px; text-align:center;">
-                <h3>🔐 Please login to view your orders</h3>
-                <p><a href="#" onclick="showLogin()" style="color:#4facfe;">Click here to <a href="login.php">login</a></a></p>
+            <div style="font-size:large; border:2px solid #fff3cd; padding:30px; border-radius:15px; text-align:center;">
+                <h3 style="padding:10px">🔐 Please login to view your orders</h3>
+                <p><a href="#" onclick="showLogin()" >Click here to <a style="color:#4facfe;" href="login.php">login</a></a></p>
             </div>
         <?php else: ?>
         
@@ -126,7 +253,7 @@
         if (empty($orders)): ?>
             <div class="no-orders">
                 <h2>📭 No orders yet</h2>
-                <p>Your order history will appear here once you place an order.</p>
+                <p style="padding:10px;">Your order history will appear here once you place an order.</p>
                 <a href="index.php" class="btn btn-primary" style="padding:15px 30px; font-size:18px;">Start Shopping</a>
             </div>
         <?php else: ?>
@@ -202,7 +329,6 @@
         <?php endif; ?>
     </div>
 
-    <!-- Link script.js for cart count -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -9,7 +9,6 @@
 
         body {
             background-color: #393E46;
-
         }
 /* Navigation Bar */
         .navbar {
@@ -29,19 +28,23 @@
             display: flex;
             gap: 30px;
             list-style: none;
-
+            
         }
-
+        
         .logo {
-            margin-left: 10px;
-
-
+            margin-left: 10px;            
         }
-
+        
+        .title {
+            display: inline-block;
+            font-size: 35px;
+            position: absolute;
+            margin: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         a {
             text-decoration: none;
             color: white;
-
         }
 
         ul {
@@ -53,21 +56,23 @@
             gap: 24px;
         }
 
-        /* .container {
+        .books-grid {
 
-            margin: auto;
+            /* margin: auto; */
+            padding: 20px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 500px;
-            width: 400px;
-            flex-direction: column;
-            gap: 15px;
+            /* align-items: center; */
+            justify-content:space-evenly;
+            /* overflow-y: scroll; */
+            /* height: 5000px; */
+            /* width: 100%; */
+            /* flex-direction:; */
+            gap: 45px;
             background-color: #948979;
-            border-radius: 30px;
-            border: 4px solid black;
+            /* border-radius: 30px; */
+            /* border: 4px solid black; */
 
-        } */
+        }
  
 
         
@@ -76,13 +81,6 @@
             font-size: xx-large;
         }
 
-        .title {
-            display: inline-block;
-            font-size: 35px;
-            position: absolute;
-            margin: 10px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
 
         .category {
             display: flex;
@@ -91,41 +89,10 @@
             position: relative;
         }
 
-        /* ACCOUNT DROPDOWN */
-        .acc {
-            position: relative;
-            z-index: 1;
-            /* z-index: 2000; */
-        }
-
-        .acc-dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            /* right: 0; */
-            /* background: white; */
-            background-color: #393E46;
-            min-width: 150px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            padding: 10px 0;
-
-        }
-
-        .acc:hover .acc-dropdown {
-            display: block;
-        }
-
-        .acc-dropdown a {
-            display: block;
-            padding: 12px 20px;
-            color: white;
-            border-bottom: 1px dotted white;
-        }
-
-        .acc-dropdown a:hover {
-
-            background-color: rgba(42, 238, 81, 0.3);
+        .card {
+            display: flex;
+            gap:20px;
+            font-size: large;
         }
 
         /*Category Dropdown*/
@@ -213,18 +180,7 @@
             background-color:#fff;
         }
 
-        .wcome {
-            width: 100%;
-            font-size: 35px;
-            color: white;
-           /* margin: auto; */
-           justify-items: center;
-           margin: 20px;
-        }
-        .wcome :nth-child(2){
-            font-size: large;
-            margin: 10px;
-        }
+        
          /* Footer */
         footer {
             background-color: #DFD0B8;

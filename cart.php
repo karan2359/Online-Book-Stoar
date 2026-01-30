@@ -7,6 +7,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart - BookStore</title>
     <style>
+          * {
+            margin: 0;
+            padding: 0;
+            /* font-family: monospace;
+            font-size: large; */
+
+            font-family: "Roboto Slab", serif;
+        }
+
+        body {
+            background-color: #393E46;
+            color:white;
+
+        }
+/* Navigation Bar */
+        .navbar {
+            display: flex;
+            /* background-color: rgba(42, 238, 81, 0.659); */
+            background-color: #222831;
+            justify-content: space-between;
+            padding: 20px;
+            /* font-size:large; */
+            font-weight: bold;
+        
+
+        }
+
+        .navlist {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+
+        }
+
+        .logo {
+            margin-left: 10px;
+        }
+        .title {
+            display: inline-block;
+            font-size: 35px;
+            position: absolute;
+            margin: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+
+        }
+
+        ul {
+            list-style: none;
+        }
+        .acc{
+            display: flex;
+            gap:20px;
+            margin:20px;
+            font-size:larger;
+        }
+
+        .books-grid {
+
+            padding: 20px;
+            display: flex; 
+            justify-content:space-evenly;
+            gap: 45px;
+            background-color: #948979;
+        }
+        .navbar {
+            display: flex;
+            /* background-color: rgba(42, 238, 81, 0.659); */
+            background-color: #222831;
+            justify-content: space-between;
+            padding: 20px;
+            /* font-size:large; */
+            font-weight: bold;
+        
+
+        }
+
+        .navlist {
+            /* position: sticky; */
+            display: flex;
+            gap: 30px;
+            list-style: none;
+
+        }
+
+        .logo {
+            margin-left: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+            padding:1px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
         .cart-container {
             max-width: 1200px;
             margin: 50px auto;
@@ -87,13 +190,36 @@
     </style>
 </head>
 <body>
-    <!-- YOUR NAVBAR HERE -->
+    <!--  NAVBAR -->
+          <nav class="navbar">
+            <div class="logo"><a href="index.php"> <img src="asset/logo cut.png" alt="logo" height="60px">
+                    <p class="title">Book Store</p></a>
+            </div>
+                <div class="menu">
+                    </div>
+                    
+                    <div class="acc">
+                    <a href="index.php">🏚️Home</a>
+                    <?php 
+                    include 'config.php';
+                    if (isLoggedIn()) {
+                        // if (isAdmin()) {
+                        //     echo "<a href='admin/admin.php'>➕ Add Book</a> | ";
+                        // }
+                        echo " <div style='color:white;'>Hi, {$_SESSION['fullname']}  | <a href='logout.php'>Logout</a>";
+                    } else {
+                        echo "<a href='login.php'>Login</a> | <a href='signin.php'>Sign Up</a>";
+                    }?>
+               </div>
+
+            </div>
+        </nav>
     
     <div class="cart-container">
         <h1>🛒 Shopping Cart</h1>
         
         <?php if (!isLoggedIn()): ?>
-            <div style="background:#fff3cd; padding:20px; border-radius:10px; margin-bottom:20px;">
+            <div style="border:2px solid #fff3cd; margin:20px;font-size:large; padding:50px; border-radius:10px; margin-bottom:20px;">
                 <p>⚠️ Please <a href="login.php" onclick="showLogin()">login</a> to view your cart</p>
             </div>
         <?php else: ?>
@@ -111,7 +237,7 @@
         $cart_items = $stmt->fetchAll();
         
         if (empty($cart_items)): ?>
-            <div style="text-align:center; padding:50px; color:#666;">
+            <div style="text-align:center; padding:50px; color:#666; font-size:large;">
                 <h2>🛒 Your cart is empty</h2>
                 <p>Add some books from the <a href="index.php">store</a></p>
             </div>
