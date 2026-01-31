@@ -3,7 +3,7 @@
             padding: 0;
             /* font-family: monospace;
             font-size: large; */
-
+            overflow-x: hidden;
             font-family: "Roboto Slab", serif;
         }
 
@@ -187,3 +187,129 @@
             height: 50px;
             justify-items: center;
         }
+        /* MAIN CONTAINER - Full Width */
+main {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;  /* NO HORIZONTAL SCROLL */
+    padding: 0;
+    margin: 0;
+}
+
+/* Books Grid - RESPONSIVE + NO OVERFLOW */
+.books-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 20px;      /* Vertical + Horizontal gap */
+    padding: 20px 15px;  /* Top/bottom 20px, left/right 15px */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    justify-content: flex-start;
+}
+
+/* Book Wrapper - Fixed Width */
+.books-gridd {
+    flex: 0 0 260px;     /* Exactly 260px wide */
+    max-width: 260px;
+    min-height: 440px;
+    box-sizing: border-box;
+}
+
+/* Book Card - Full Wrapper */
+.book-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Image - Responsive Cover */
+.book-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Book Info */
+.book-info {
+    padding: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.book-info h3 {
+    font-size: 1.1em;
+    margin: 8px 0 10px 0;
+    line-height: 1.3;
+    height: 3.3em;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+}
+
+.subcategory-tag {
+    font-size: 0.75em;
+    color: #666;
+    background: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 12px;
+    align-self: flex-start;
+}
+
+/* Price & Button */
+.price {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #e74c3c;
+    margin: 12px 0 10px 0;
+}
+
+.add-cart-btn {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95em;
+    transition: all 0.3s;
+    margin-top: auto;
+}
+
+.add-cart-btn:hover {
+    background: linear-gradient(135deg, #2980b9, #1f5f8b);
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVE BREAKPOINTS */
+@media (max-width: 1200px) {
+    .books-gridd { flex: 0 0 240px; max-width: 240px; }
+}
+
+@media (max-width: 900px) {
+    .books-grid { gap: 15px 15px; padding: 15px 10px; }
+    .books-gridd { flex: 0 0 220px; max-width: 220px; }
+}
+
+@media (max-width: 700px) {
+    .books-gridd { flex: 0 0 calc(50% - 10px); max-width: calc(50% - 10px); }
+}
+
+@media (max-width: 480px) {
+    .books-grid { gap: 12px 12px; padding: 10px 8px; }
+    .books-gridd { flex: 0 0 calc(50% - 8px); max-width: calc(50% - 8px); }
+}

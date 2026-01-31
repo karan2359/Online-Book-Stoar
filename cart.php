@@ -18,7 +18,7 @@
 
         body {
             background-color: #393E46;
-            color:white;
+            /* color:white; */
 
         }
 /* Navigation Bar */
@@ -114,6 +114,10 @@
             max-width: 1200px;
             margin: 50px auto;
             padding: 20px;
+        }
+        h1{
+            color:white;
+            padding: 10px;
         }
         
         .cart-table {
@@ -278,9 +282,15 @@
                     </td>
                     <td>₹<?= number_format($subtotal, 2) ?></td>
                     <td>
-                        <a href="remove_from_cart.php?id=<?= $item['id'] ?>" 
-                           class="btn btn-danger" 
-                           onclick="return confirm('Remove this item?')">Remove</a>
+                        <td>
+    <td>
+    <button class="btn btn-danger" onclick="removeFromCart(<?= $item['id'] ?>)">
+        ❌ Remove
+    </button>
+</td>
+
+</td>
+
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -321,6 +331,29 @@
                 }
             });
         }
+        function removeFromCart(cartItemId) {
+    if (confirm('Remove this item from cart?')) {
+        fetch('remove_from_cart.php', {
+            **method: 'POST',**  // ✅ MUST BE POST
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            **body: 'cart_item_id=' + cartItemId**  // ✅ POST data
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();  // Refresh cart page
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            alert('Network error: ' + error);
+        });
+    }
+}
+
     </script>
     <script src="script.js"></script>
 </body>

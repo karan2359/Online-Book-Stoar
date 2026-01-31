@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <header>
+<header>
 
         <nav class="navbar">
             <div class="logo"><a href="index.php"> <img src="asset/logo cut.png" alt="logo" height="60px">
@@ -102,7 +102,7 @@
             </li>
             <li class="dropdown list" onclick="filterBooks('Regional Books', '')">Regional Books
                 <ul>
-                    <li  class="a" onclick="filterBooks('Regional Books', 'Marathi')">Marathi</li>
+                    <li  class="a" onclick="filterBooks('', 'Marathi')">Marathi</li>
                     <li  class="a" onclick="filterBooks('Regional Books', 'Hindi')">Hindi</li>
                     <li  class="a" onclick="filterBooks('Regional Books', 'Gujarati')">Gujarati</li>
                     <!-- <li><a href="#"></a></li>
@@ -110,36 +110,35 @@
                 </ul>
             </li>
 </ul>
-    </header>
+</header>
     <main>
-        <div class="books-grid" id="booksContainer">
-            <?php
-            // Fetch all books with category info
-            $stmt = $pdo->query("SELECT * FROM books ORDER BY created_at DESC");
-            while ($book = $stmt->fetch()) {
-                $subcategory = explode(',', $book['subcategory'] ?? $book['category'])[0];
-                echo "<div class='books-gridd'>
-                <div class='book-card' style='border:2px solid black; background-color:white; width:250px; height:400px;'
-                     data-category='{$book['category']}' 
-                     data-subcategory='{$subcategory}'
-                     data-id='{$book['id']}'>
-                    <img src='{$book['image']}' alt='{$book['title']}' style='border:1px solid black ; height:50px;'>
-                    <div class='book-info'>
-                        <div class='subcategory-tag'>{$book['category']} / {$subcategory}</div>
-                        <h3>{$book['title']}</h3>
-                        <p><strong>✍️ {$book['author']}</strong></p>
-                        <p>🏢 {$book['publisher']}</p>
-                        <p class='price' style='font-size:large; font-weight:bold;'>₹{$book['price']}</p>
-                        <p class='desc'> '.substr($book['description'], 0, 80).'...</p>
-                        <button class='add-cart-btn' onclick='addToCart(<?php echo $book['id'];?>)'>
-    🛒 Add to Cart
-</button>
-                    </div>
-                </div>
-                </div>";
-            }
-            ?>
+<div class="books-grid" id="booksContainer">
+<?php
+$stmt = $pdo->query("SELECT * FROM books ORDER BY created_at DESC");
+while ($book = $stmt->fetch()) {
+    $subcategory = explode(',', $book['subcategory'] ?? $book['category'])[0];
+    echo "<div class='books-gridd'>
+    <div class='book-card' 
+         data-category='{$book['category']}' 
+         data-subcategory='{$subcategory}'
+         data-id='{$book['id']}'>
+        <img src='{$book['image']}' alt='{$book['title']}'>
+
+            <div class='book-info'>
+                <div class='subcategory-tag'>{$book['category']} / {$subcategory}</div>
+                <h3>{$book['title']}</h3>
+                <p><strong>✍️ {$book['author']}</strong></p>
+                <p>🏢 {$book['publisher']}</p>
+                <p class='price' style='font-size:large; font-weight:bold;'>₹{$book['price']}</p>
+                <p class='desc'>".substr($book['description'] ?? '', 0, 80)."...</p>
+                <button class='add-cart-btn' onclick='addToCart({$book['id']})'>🛒 Add to Cart</button>
+            </div>
         </div>
+    </div>";
+}
+?>
+</div>
+
     </div>
 
     <script>
