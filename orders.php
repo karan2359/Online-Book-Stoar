@@ -133,10 +133,12 @@
         
         .order-details {
             padding: 25px;
+            color:black;
         }
         
         .order-items {
             margin: 20px 0;
+
         }
         
         .order-item {
@@ -147,6 +149,7 @@
             border: 1px solid #eee;
             border-radius: 10px;
             margin-bottom: 10px;
+            
         }
         
         .item-info {
@@ -220,7 +223,7 @@
     <!-- YOUR NAVBAR WITH ORDERS LINK -->
     
     <div class="orders-container">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <div style=" display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
             <h1>📦 My Orders</h1>
             <a href="index.php" class="btn btn-primary">← Continue Shopping</a>
         </div>

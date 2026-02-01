@@ -26,7 +26,7 @@
                 </div>
                 <div class="center card">
                     <a href="cart.php">🛒 Cart</a>
-                    <a href="orders.php">Orders</a>
+                    <a href="my_orders.php">Orders</a>
                 </div>
                 <div class="acc card">
                     <?php 

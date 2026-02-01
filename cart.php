@@ -314,7 +314,7 @@
                     Total: <strong>₹<?= number_format($grand_total, 2) ?></strong>
                 </div>
             </div>
-            <a href="checkout.php" class="btn btn-success" style="width:100%; text-align:center;">🚀 Place Order</a>
+            <a href="place_order.php" class="btn btn-success" style="width:100%; text-align:center;">🚀 Place Order</a>
             <a href="index.php" class="btn btn-primary" style="width:100%; text-align:center; margin-top:10px;">Continue Shopping</a>
         </div>
         
