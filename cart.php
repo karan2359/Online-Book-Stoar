@@ -170,7 +170,7 @@
         }
         
         .btn-primary { background: #4facfe; color: white; }
-        .btn-danger { background: #ff6b6b; color: white; }
+        .btn-danger { border: 2px solid red; color: red; }
         .btn-success { background: #51cf66; color: white; }
         
         .cart-summary {
@@ -284,8 +284,6 @@
                     </td>
                     <td>₹<?= number_format($subtotal, 2) ?></td>
                     <td>
-                        <td>
-    <td>
     <form method="POST" action="remove_from_cart.php" style="display:inline;">
         <input type="hidden" name="cart_item_id" value="<?= $item['id'] ?>">
         <button type="submit" class="btn btn-danger" onclick="return confirm('Remove?')">
@@ -293,9 +291,6 @@
         </button>
     </form>
 
-</td>
-
-</td>
 
                     </td>
                 </tr>
@@ -314,8 +309,8 @@
                     Total: <strong>₹<?= number_format($grand_total, 2) ?></strong>
                 </div>
             </div>
-            <a href="place_order.php" class="btn btn-success" style="width:100%; text-align:center;">🚀 Place Order</a>
-            <a href="index.php" class="btn btn-primary" style="width:100%; text-align:center; margin-top:10px;">Continue Shopping</a>
+            <a href="place_order.php" class="btn btn-success" style="width:85%; text-align:center;">🚀 Place Order</a>
+            <a href="index.php" class="btn btn-primary" style="width:85%; text-align:center; margin-top:10px;">Continue Shopping</a>
         </div>
         
         <?php endif; ?>
