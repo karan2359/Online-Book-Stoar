@@ -1,27 +1,18 @@
-<?php /*
-session_start();
-$host = 'localhost';
-$dbname = 'bookstore';
-$username = 'root';
-$password = '';
+<?php
+// Database connection
+if (!isset($pdo)) {
+    $host = 'localhost';
+    $dbname = 'bookstore';
+    $username = 'root';
+    $password = '';
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("❌ Database Error: " . $e->getMessage());
+    try {
+        $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $e) {
+        die("❌ Database Error: " . $e->getMessage());
+    }
 }
-
-function isLoggedIn() {
-    return isset($_SESSION['user_id']);
-}
-
-function isAdmin() {
-    return isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1;
-}
-?>
-*/
-
 // Prevent multiple inclusions
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -40,18 +31,4 @@ if (!function_exists('isAdmin')) {
     }
 }
 
-// Database connection
-if (!isset($pdo)) {
-    $host = 'localhost';
-    $dbname = 'bookstore';
-    $username = 'root';
-    $password = '';
-
-    try {
-        $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch(PDOException $e) {
-        die("❌ Database Error: " . $e->getMessage());
-    }
-}
 ?>

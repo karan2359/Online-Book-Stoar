@@ -105,8 +105,6 @@
                     <li  class="a" onclick="filterBooks('', 'Marathi')">Marathi</li>
                     <li  class="a" onclick="filterBooks('Regional Books', 'Hindi')">Hindi</li>
                     <li  class="a" onclick="filterBooks('Regional Books', 'Gujarati')">Gujarati</li>
-                    <!-- <li><a href="#"></a></li>
-                        <li><a href="#"></a></li> -->
                 </ul>
             </li>
 </ul>
@@ -130,7 +128,7 @@ while ($book = $stmt->fetch()) {
                 <p><strong>✍️ {$book['author']}</strong></p>
                 <p>🏢 {$book['publisher']}</p>
                 <p class='price' style='font-size:large; font-weight:bold;'>₹{$book['price']}</p>
-                <p class='desc'>".substr($book['description'] ?? '', 0, 80)."...</p>
+                <!--<p class='desc'>".substr($book['description'] ?? '', 0, 80)."...</p>-->
                 <button class='add-cart-btn' onclick='addToCart({$book['id']})'>🛒 Add to Cart</button>
             </div>
         </div>
@@ -164,13 +162,7 @@ while ($book = $stmt->fetch()) {
                     book.style.display = 'none';
                 }
             });
-            
-            // Update active button
- /*           document.querySelectorAll('.category-filter button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-   */         
+                  
             // Show result count
             document.getElementById('resultCount').textContent = 
                 visibleCount + ' books found';

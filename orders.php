@@ -208,11 +208,8 @@
                     <a href="index.php">🏚️Home</a>
                     <?php 
                     include 'config.php';
-                    if (isLoggedIn()) {
-                        // if (isAdmin()) {
-                        //     echo "<a href='admin/admin.php'>➕ Add Book</a> | ";
-                        // }
-                        echo " <div style='color:white;'>Hi, {$_SESSION['fullname']}  | <a href='logout.php'>Logout</a>";
+                    if (isLoggedIn()) {                       
+                        echo " <div style='color:white; padding:4px;'>Hi, {$_SESSION['fullname']}  | <a href='logout.php'>Logout</a>";
                     } else {
                         echo "<a href='login.php'>Login</a> | <a href='signin.php'>Sign Up</a>";
                     }?>

@@ -10,9 +10,6 @@
           * {
             margin: 0;
             padding: 0;
-            /* font-family: monospace;
-            font-size: large; */
-
             font-family: "Roboto Slab", serif;
         }
 
@@ -191,6 +188,14 @@
             color: #28a745;
             margin: 20px 0;
         }
+        .not_login{
+            border:2px solid #fff3cd; 
+            margin:20px;font-size:large; 
+            padding:50px; 
+            border-radius:10px; 
+            margin-bottom:20px; 
+            color: #8c8686;
+        }
     </style>
 </head>
 <body>
@@ -207,10 +212,7 @@
                     <?php 
                     include 'config.php';
                     if (isLoggedIn()) {
-                        // if (isAdmin()) {
-                        //     echo "<a href='admin/admin.php'>➕ Add Book</a> | ";
-                        // }
-                        echo " <div style='color:white;'>Hi, {$_SESSION['fullname']}  | <a href='logout.php'>Logout</a>";
+                        echo " <div style='color:white; padding:4px;'>Hi, {$_SESSION['fullname']}  | <a href='logout.php'>Logout</a>";
                     } else {
                         echo "<a href='login.php'>Login</a> | <a href='signin.php'>Sign Up</a>";
                     }?>
@@ -223,7 +225,7 @@
         <h1>🛒 Shopping Cart</h1>
         
         <?php if (!isLoggedIn()): ?>
-            <div style="border:2px solid #fff3cd; margin:20px;font-size:large; padding:50px; border-radius:10px; margin-bottom:20px;">
+            <div class="not_login">
                 <p>⚠️ Please <a href="login.php" onclick="showLogin()">login</a> to view your cart</p>
             </div>
         <?php else: ?>
@@ -284,9 +286,13 @@
                     <td>
                         <td>
     <td>
-    <button class="btn btn-danger" onclick="removeFromCart(<?= $item['id'] ?>)">
-        ❌ Remove
-    </button>
+    <form method="POST" action="remove_from_cart.php" style="display:inline;">
+        <input type="hidden" name="cart_item_id" value="<?= $item['id'] ?>">
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Remove?')">
+            ❌ Remove
+        </button>
+    </form>
+
 </td>
 
 </td>
